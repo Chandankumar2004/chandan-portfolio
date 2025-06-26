@@ -41,26 +41,24 @@ const Contact = () => {
         publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
       }
     )
-      .then(
-        () => {
-          console.log('Email sent successfully!');
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
+    .then(
+      () => {
+        console.log('Email sent successfully!');
+        setLoading(false);
+        alert("Thank you. I will get back to you as soon as possible.");
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          console.error('Email sending failed:', error);
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        });
+      },
+      (error) => {
+        console.error('Email sending failed:', error);
+        setLoading(false);
+        alert("Ahh, something went wrong. Please try again.");
+      }
+    );
   };
 
   return (
@@ -88,6 +86,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your good name?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
             />
           </label>
           <label className='flex flex-col'>
@@ -99,6 +98,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your web address?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
             />
           </label>
           <label className='flex flex-col'>
@@ -110,6 +110,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder='What you want to say?'
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
             />
           </label>
 
