@@ -31,6 +31,8 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
+    console.log('Sending email...');
+
     emailjs.sendForm(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         'template_g2rq8qe',
@@ -41,6 +43,7 @@ const Contact = () => {
       )
       .then(
         () => {
+          console.log('Email sent successfully!');
           setLoading(false);
           alert("Thank you. I will get back to you as soon as possible.");
 
@@ -51,6 +54,7 @@ const Contact = () => {
           });
         },
         (error) => {
+          console.error('Email sending failed:', error);
           setLoading(false);
           console.error(error);
 
