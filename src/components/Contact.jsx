@@ -34,13 +34,13 @@ const Contact = () => {
     console.log('Sending email...');
 
     emailjs.sendForm(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        'template_g2rq8qe',
-        formRef.current,
-        {
-          publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-        }
-      )
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      {
+        publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+      }
+    )
       .then(
         () => {
           console.log('Email sent successfully!');
