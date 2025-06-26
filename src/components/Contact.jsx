@@ -31,18 +31,13 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
+    emailjs.sendForm(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        formRef.current,
         {
-          from_name: form.name,
-          to_name: "Chandan Kumar",
-          from_email: form.email,
-          to_email: "chandan32005c@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+          publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+        }
       )
       .then(
         () => {
