@@ -30,7 +30,7 @@ import firstTestimonial from './Tars Ken.webp';
 import secondTestimonial from './image.webp';
 import thirdTestimonial from './third testimonial.webp'
 import ankush from './tech/ankush.png';
-import bhumi from './tech/bhumi.png';
+import bhumi from './tech/bhumi.jpg';
 import annu from './tech/annu.png';
 import romanLogo from './company/Romana.png';
 import java_icons from './tech/java_icons.png';
