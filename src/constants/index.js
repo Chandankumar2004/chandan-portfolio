@@ -190,7 +190,7 @@ const testimonials = [
   {
     testimonial:
       "I was amazed at how simple and intuitive the Weather App.Accurate real-time data make it incredibly useful.",
-    name: "Bhumika H M",
+    name: "Manasa",
     designation: "Weather",
     company: "Weather-App",
     image: bhumi,
