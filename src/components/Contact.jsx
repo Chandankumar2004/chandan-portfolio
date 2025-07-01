@@ -31,14 +31,14 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    console.log(import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
+    console.log('EmailJS Public Key:', import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          to_name: "Chandan kumar",
+          to_name: "Chandan_kumar",
           from_email: form.email,
           to_email: "chandan32005c@gmail.com",
           message: form.message,
@@ -89,6 +89,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
+              autocomplete="name"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -100,6 +101,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
+              autocomplete="email"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
