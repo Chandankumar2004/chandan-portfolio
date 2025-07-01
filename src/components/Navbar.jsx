@@ -61,6 +61,18 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+          {/* Add Get Resume Button */}
+          <li
+            className="text-secondary hover:text-white text-[18px] font-medium cursor-pointer"
+            onClick={() => setActive("")} // Optional: remove active state when clicking resume link
+          >
+            <a
+              href="https://drive.google.com/file/d/1910bBxS1a47xSWlaiCaxneOHIJha3uYw/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"            >
+              Resume||Cv
+            </a>
+          </li>
         </ul>
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>
@@ -88,9 +100,22 @@ const Navbar = () => {
                     setActive(nav.title);
                   }}
                 >
+
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
+              {/* Add Get Resume Button for mobile */}
+              <li
+                className={`font-poppins font-medium cursor-pointer text-[16px] text-secondary`}
+                onClick={() => {
+                  setToggle(!toggle);
+                  setActive(""); // Optional: remove active state
+                }}
+              >
+                <a href="https://drive.google.com/file/d/1910bBxS1a47xSWlaiCaxneOHIJha3uYw/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                  Resume/Cv
+                </a>
+              </li>
             </ul>
           </div>
         </div>
