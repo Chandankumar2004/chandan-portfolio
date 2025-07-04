@@ -112,7 +112,7 @@ const Navbar = () => {
                   setActive(""); // Optional: remove active state
                 }}
               >
-                <a href="https://drive.google.com/file/d/1910bBxS1a47xSWlaiCaxneOHIJha3uYw/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                <a href="https://drive.google.com/file/d/168JPijPASJix7aQQbhcgwXtVOaEr5HE5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                   Resume/Cv
                 </a>
               </li>
