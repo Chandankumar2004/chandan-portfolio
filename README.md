@@ -35,7 +35,7 @@ This is my personal portfolio website showcasing my projects, skills, resume, an
 
 | Home Page | Projects Section |
 |----------|------------------|
-| ![Home](https://chandan-portfolio-tau.vercel.app/preview-home.jpg) | ![Projects](https://chandan-portfolio-tau.vercel.app/preview-projects.jpg) |
+| ![Home](https://chandan-portfolio-tau.vercel.app/preview-home.jpg) | ![Projects](https://github.com/Chandankumar2004/chandan-portfolio/blob/c68b1d22db1685cbc208eb786565edc53ca9ee7d/Screenshot%202025-07-11%20114052.png) |
 
 ---
 
