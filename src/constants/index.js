@@ -37,7 +37,7 @@ import {
   project_1,
   project_2,
   project_3,
-  project_4,
+  project_7,
   project_6,
   project_5
 
@@ -278,7 +278,7 @@ const projects = [
         color: "blue-text-gradient",
       },
     ],
-    image: project_4,
+    image: project_7,
     source_code_link: "https://github.com/Chandankumar2004/EMS",
   },
   {
