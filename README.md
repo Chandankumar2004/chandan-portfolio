@@ -1,5 +1,5 @@
 
-# 🌐 Chandan Kumar Chaurasiya - Developer Portfolio
+# 🌐 Chandan Kumar Chaurasiya - Developer Portfolio.
 
 <p align="center">
   <a href="https://chandan-portfolio-tau.vercel.app/" target="_blank">
