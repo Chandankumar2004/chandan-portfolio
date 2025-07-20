@@ -37,6 +37,9 @@ import {
   project_1,
   project_2,
   project_3,
+  project_4,
+  project_6,
+  project_5
 
 } from '../assets'
 
@@ -252,6 +255,73 @@ const projects = [
     ],
     image: project_2,
     source_code_link: "https://github.com/Chandankumar2004/Weather_App",
+  },
+  {
+    name: "EMS",
+    description:
+      "This Java Swing-based Employee Management System supports adding, viewing, searching, updating, and deleting employee records with MySQL database integration.",
+    tags: [
+      {
+        name: "Java",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Swing",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "SQL",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "JDBC",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: project_4,
+    source_code_link: "https://github.com/Chandankumar2004/EMS",
+  },
+  {
+    name: "Spotify UI Clone",
+    description:
+      "A clean and responsive Spotify UI Clone built with HTML, CSS. This project replicates the visual aesthetics of Spotify's desktop web interface and demonstrates strong UI/UX design skills.",
+    tags: [
+      {
+        name: "HTML5",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "CSS3",
+        color: "blue-text-gradient",
+      },
+      // {
+      //   name: "JavaScript",
+      //   color: "blue-text-gradient",
+      // },
+    ],
+    image: project_5,
+    source_code_link: "https://github.com/Chandankumar2004/SpotifyUIClone",
+  },
+  {
+    name: "Amazon Clone(UI)",
+    description:
+      "This project is a simple Amazon clone built using HTML and CSS. It replicates the basic UI of the Amazon homepage, including a navigation bar, search functionality, product categories.",
+    tags: [
+      {
+        name: "HTML5",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "CSS3",
+        color: "blue-text-gradient",
+      },
+      // {
+      //   name: "JavaScript",
+      //   color: "blue-text-gradient",
+      // },
+    ],
+    image: project_6,
+    source_code_link: "https://github.com/Chandankumar2004/Amazon_UI_clon",
   },
   {
     name: "Pra-Roz",
