@@ -67,7 +67,7 @@ const Navbar = () => {
             onClick={() => setActive("")} // Optional: remove active state when clicking resume link
           >
             <a
-              href="https://drive.google.com/file/d/1nzg7dZv2G-qNNl59Pn-8-5hu67Z6mjBG/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1gyKaTuRxShQUDYLPXOmgXMrJR-QCtFQh/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"            >
               Resume||Cv
