@@ -282,7 +282,7 @@ const projects = [
     source_code_link: "https://github.com/Chandankumar2004/EMS",
   },
   {
-    name: "Movie_Api",
+    name: "Movie_App",
     description:
       "Login, search movies, view details, manage favorites, try “Surprise Me!”, switch dark/light mode, enjoy pagination, responsive design, plus contact form and modals—all in a seamless movie browsing experience.",
     tags: [
