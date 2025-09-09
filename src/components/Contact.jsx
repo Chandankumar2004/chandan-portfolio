@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -31,38 +30,31 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    console.log('EmailJS Public Key:', import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Chandan_kumar",
-          from_email: form.email,
-          to_email: "chandan32005c@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
+    fetch("https://formspree.io/f/meolnopv", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => {
+        setLoading(false);
+        if (response.ok) {
           alert("Thank you. I will get back to you as soon as possible.");
-
           setForm({
             name: "",
             email: "",
             message: "",
           });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
+        } else {
           alert("Ahh, something went wrong. Please try again.");
         }
-      );
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error(error);
+        alert("Ahh, something went wrong. Please try again.");
+      });
   };
 
   return (
@@ -78,6 +70,8 @@ const Contact = () => {
 
         <form
           ref={formRef}
+          action="https://formspree.io/f/meolnopv"
+          method="POST"
           onSubmit={handleSubmit}
           className='mt-12 flex flex-col gap-8'
         >
@@ -89,7 +83,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              autocomplete="name"
+              autoComplete="name"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -101,7 +95,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              autocomplete="email"
+              autoComplete="email"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
