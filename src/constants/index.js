@@ -39,7 +39,7 @@ import {
   project_3,
   project_7,
   project_6,
-  project_5
+  project12
 
 } from '../assets'
 
@@ -282,9 +282,9 @@ const projects = [
     source_code_link: "https://github.com/Chandankumar2004/EMS",
   },
   {
-    name: "Spotify UI Clone",
+    name: "Movie_Api",
     description:
-      "A clean and responsive Spotify UI Clone built with HTML, CSS. This project replicates the visual aesthetics of Spotify's desktop web interface and demonstrates strong UI/UX design skills.",
+      "Login, search movies, view details, manage favorites, try “Surprise Me!”, switch dark/light mode, enjoy pagination, responsive design, plus contact form and modals—all in a seamless movie browsing experience.",
     tags: [
       {
         name: "HTML5",
@@ -294,13 +294,17 @@ const projects = [
         name: "CSS3",
         color: "blue-text-gradient",
       },
-      // {
-      //   name: "JavaScript",
-      //   color: "blue-text-gradient",
-      // },
+      {
+        name: "JavaScript",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "API_Key",
+        color: "blue-text-gradient",
+      },
     ],
-    image: project_5,
-    source_code_link: "https://github.com/Chandankumar2004/SpotifyUIClone",
+    image: project12,
+    source_code_link: "https://github.com/Chandankumar2004/MovieApi",
   },
   {
     name: "Amazon Clone(UI)",

@@ -39,7 +39,7 @@ import project_2 from './project_2.png';
 import project_3 from './project_3.png';
 import project_7 from './project_7.png';
 import project_6 from './project_6.png';
-import project_5 from './project_5.png';
+import project12 from './project12.png';
 
 export {
   logo,
@@ -83,5 +83,5 @@ export {
   project_3,
   project_7,
   project_6,
-  project_5
+  project12
 };
