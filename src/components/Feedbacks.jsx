@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,29 +9,27 @@ import { testimonials } from "../constants";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const FeedbackCard = ({ index, testimonial, name, designation, company, image }) => {
-  // Use a `ref` to apply GSAP animations
-  const cardRef = React.useRef(null);
+const FeedbackCard = React.memo(({ index, testimonial, name, designation, company, image }) => {
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const el = cardRef.current;
 
-    // Add the ScrollTrigger animation with GSAP
     gsap.fromTo(
       el,
       {
         opacity: 0,
-        y: 100, // Initial position off-screen
+        y: 100,
       },
       {
         opacity: 1,
         y: 0,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: el,
-          start: "top bottom", // Trigger when the top of the element reaches the bottom of the viewport
-          end: "top center",   // End the animation when the top reaches the center
-          scrub: true,         // Link the animation progress to the scroll position
-          markers: false,      // Set to true if you want to see the markers for debugging
+          start: "top 85%", 
+          toggleActions: "play none none reverse", 
         },
       }
     );
@@ -66,7 +64,7 @@ const FeedbackCard = ({ index, testimonial, name, designation, company, image })
       </div>
     </div>
   );
-};
+});
 
 const Feedbacks = () => {
   return (
@@ -78,7 +76,7 @@ const Feedbacks = () => {
         </div>
       </div>
       <div
-        className={`-mt-20 pb-14 ${styles.paddingX} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  justify-items-center`}
+        className={`-mt-20 pb-14 ${styles.paddingX} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center`}
       >
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
