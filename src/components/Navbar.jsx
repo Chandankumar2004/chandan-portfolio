@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { menu, close } from "../assets";
+
+const resumeUrl = "https://drive.google.com/file/d/18E-v7p5C4hppAjKHqr3wpKU-wigs2lJZ/view?usp=sharing";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -25,6 +27,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setToggle(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
   return (
     <nav
       className={`${
@@ -42,48 +52,56 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Chandan &nbsp;
             <span className='sm:block hidden'> | Kumar</span>
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='list-none hidden lg:flex flex-row gap-4 xl:gap-7'>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } header-nav-link hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
-          {/* Add Get Resume Button */}
           <li
-            className="text-secondary hover:text-white text-[18px] font-medium cursor-pointer"
-            onClick={() => setActive("")} // Optional: remove active state when clicking resume link
+            className="header-nav-link text-secondary hover:text-white text-[18px] font-medium cursor-pointer"
+            onClick={() => setActive("")}
           >
             <a
-              href="https://drive.google.com/file/d/1gyKaTuRxShQUDYLPXOmgXMrJR-QCtFQh/view?usp=sharing"
+              href={resumeUrl}
               target="_blank"
-              rel="noopener noreferrer"            >
-              Resume||Cv
+              rel="noopener noreferrer"
+            >
+              Resume / CV
             </a>
           </li>
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <img
-            src={toggle ? close : menu}
-            alt='menu'
-            className='w-[28px] h-[28px] object-contain'
-            onClick={() => setToggle(!toggle)}
-          />
+        <div className='lg:hidden flex flex-1 justify-end items-center'>
+          <button
+            type="button"
+            onClick={() => setToggle((isOpen) => !isOpen)}
+            aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={toggle}
+            aria-controls="mobile-navigation"
+            className="rounded-md p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+          >
+            <img
+              src={toggle ? close : menu}
+              alt=""
+              className='w-[28px] h-[28px] object-contain'
+            />
+          </button>
 
           <div
+            id="mobile-navigation"
             className={`${
               !toggle ? "hidden" : "flex"
             } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
@@ -96,7 +114,7 @@ const Navbar = () => {
                     active === nav.title ? "text-white" : "text-secondary"
                   }`}
                   onClick={() => {
-                    setToggle(!toggle);
+                    setToggle(false);
                     setActive(nav.title);
                   }}
                 >
@@ -104,16 +122,15 @@ const Navbar = () => {
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
-              {/* Add Get Resume Button for mobile */}
               <li
                 className={`font-poppins font-medium cursor-pointer text-[16px] text-secondary`}
                 onClick={() => {
-                  setToggle(!toggle);
-                  setActive(""); // Optional: remove active state
+                  setToggle(false);
+                  setActive("");
                 }}
               >
-                <a href="https://drive.google.com/file/d/168JPijPASJix7aQQbhcgwXtVOaEr5HE5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                  Resume/Cv
+                <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                  Resume / CV
                 </a>
               </li>
             </ul>

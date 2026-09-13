@@ -24,11 +24,17 @@ const ExperienceCard = React.memo(({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[90%] h-[90%] object-contain'
-          />
+          {experience.iconText ? (
+            <span className="text-2xl font-black text-white">{experience.iconText}</span>
+          ) : (
+            <img
+              src={experience.icon}
+              alt={experience.company_name}
+              loading="lazy"
+              decoding="async"
+              className={`w-[90%] h-[90%] object-contain ${experience.isRoundIcon ? "rounded-full" : ""}`}
+            />
+          )}
         </div>
       }
     >
@@ -82,4 +88,4 @@ const Experience = () => {
   );
 };
 
-export default SectionWrapper(Experience, "work");
+export default SectionWrapper(Experience, "experience");

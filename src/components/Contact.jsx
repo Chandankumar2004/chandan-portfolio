@@ -1,13 +1,15 @@
-import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaCalendarCheck } from "react-icons/fa6";
 
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+const EarthCanvas = lazy(() => import("./canvas/Earth"));
+
 const Contact = () => {
-  const formRef = useRef();
+  const earthRef = useRef(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,6 +17,31 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [notice, setNotice] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [loadEarth, setLoadEarth] = useState(false);
+
+  useEffect(() => {
+    if (!notice) return undefined;
+    const timer = window.setTimeout(() => setNotice(null), 4500);
+    return () => window.clearTimeout(timer);
+  }, [notice]);
+
+  useEffect(() => {
+    const target = earthRef.current;
+    if (!target || !window.IntersectionObserver) {
+      setLoadEarth(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setLoadEarth(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "700px 0px" });
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { target } = e;
@@ -24,10 +51,26 @@ const Contact = () => {
       ...form,
       [name]: value,
     });
+    setErrors((currentErrors) => ({ ...currentErrors, [name]: "" }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const nextErrors = {};
+    if (!form.name.trim()) nextErrors.name = "Please enter your name.";
+    if (!form.email.trim()) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+    if (!form.message.trim()) nextErrors.message = "Please write a message.";
+
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      setNotice({ type: "error", message: "Please complete the highlighted fields." });
+      return;
+    }
+
     setLoading(true);
 
     fetch("https://formspree.io/f/meolnopv", {
@@ -40,43 +83,51 @@ const Contact = () => {
       .then((response) => {
         setLoading(false);
         if (response.ok) {
-          alert("Thank you. I will get back to you as soon as possible.");
+          setNotice({ type: "success", message: "Message sent! I'll get back to you soon." });
           setForm({
             name: "",
             email: "",
             message: "",
           });
         } else {
-          alert("Ahh, something went wrong. Please try again.");
+          setNotice({ type: "error", message: "Message could not be sent. Please try again." });
         }
       })
       .catch((error) => {
         setLoading(false);
         console.error(error);
-        alert("Ahh, something went wrong. Please try again.");
+        setNotice({ type: "error", message: "Message could not be sent. Please try again." });
       });
   };
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
+      className={`mt-6 flex flex-col-reverse gap-6 overflow-hidden lg:mt-8 lg:flex-row lg:items-start`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+        className='flex-[0.75] bg-black-100 p-6 rounded-2xl sm:p-7'
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <a
+          href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20book%20a%20meeting.%20My%20preferred%20date%20and%20time%20are%3A"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/45 bg-cyan-400/10 px-4 py-2.5 text-sm font-bold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-400/20"
+        >
+          <FaCalendarCheck size={16} /> Book a meeting
+        </a>
 
         <form
-          ref={formRef}
           action="https://formspree.io/f/meolnopv"
           method="POST"
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          noValidate
+          className='mt-6 flex flex-col gap-5'
         >
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
+            <span className='text-white font-medium mb-2'>Your Name</span>
             <input
               type='text'
               name='name'
@@ -84,11 +135,15 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your good name?"
               autoComplete="name"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
+            {errors.name && <span id="name-error" className="mt-1.5 text-xs text-rose-300">{errors.name}</span>}
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email.</span>
+            <span className='text-white font-medium mb-2'>Your email.</span>
             <input
               type='email'
               name='email'
@@ -96,23 +151,32 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What's your web address?"
               autoComplete="email"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
+            {errors.email && <span id="email-error" className="mt-1.5 text-xs text-rose-300">{errors.email}</span>}
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
+            <span className='text-white font-medium mb-2'>Your Message</span>
             <textarea
-              rows={7}
+              rows={5}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "message-error" : undefined}
+              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
+            {errors.message && <span id="message-error" className="mt-1.5 text-xs text-rose-300">{errors.message}</span>}
           </label>
 
           <button
             type='submit'
+            disabled={loading}
             className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
           >
             {loading ? "Sending..." : "Send"}
@@ -121,11 +185,29 @@ const Contact = () => {
       </motion.div>
 
       <motion.div
+        ref={earthRef}
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className='h-[320px] md:h-[420px] lg:h-[460px] xl:h-[550px] lg:flex-1'
       >
-        <EarthCanvas />
+        <Suspense fallback={<div className="flex h-full items-center justify-center"><span className="canvas-loader" /></div>}>
+          {loadEarth && <EarthCanvas />}
+        </Suspense>
       </motion.div>
+
+      <AnimatePresence>
+        {notice && (
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.96 }}
+            transition={{ duration: 0.25 }}
+            role="status"
+            className={`fixed bottom-6 right-6 z-50 max-w-sm rounded-xl border px-5 py-4 text-sm font-medium shadow-2xl backdrop-blur ${notice.type === "success" ? "border-emerald-400/40 bg-emerald-950/90 text-emerald-100" : "border-rose-400/40 bg-rose-950/90 text-rose-100"}`}
+          >
+            {notice.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

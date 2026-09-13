@@ -9,7 +9,7 @@ import { testimonials } from "../constants";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const FeedbackCard = React.memo(({ index, testimonial, name, designation, company, image }) => {
+const FeedbackCard = React.memo(({ testimonial, name, designation, company, avatar }) => {
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -55,11 +55,13 @@ const FeedbackCard = React.memo(({ index, testimonial, name, designation, compan
             </p>
           </div>
 
-          <img
-            src={image}
-            alt={`feedback_by-${name}`}
-            className="w-10 h-10 rounded-full object-cover"
-          />
+          <div
+            role="img"
+            aria-label={`${name} cartoon avatar`}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 text-2xl shadow-lg shadow-violet-950/40"
+          >
+            {avatar}
+          </div>
         </div>
       </div>
     </div>
@@ -78,8 +80,8 @@ const Feedbacks = () => {
       <div
         className={`-mt-20 pb-14 ${styles.paddingX} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center`}
       >
-        {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
+      {testimonials.map((testimonial) => (
+          <FeedbackCard key={testimonial.name} {...testimonial} />
         ))}
       </div>
     </div>
