@@ -8,6 +8,8 @@ import { slideIn } from "../utils/motion";
 
 const EarthCanvas = lazy(() => import("./canvas/Earth"));
 
+const inputClassName = "w-full rounded-2xl border border-white/[0.035] bg-[#100d25] px-4 py-3.5 font-medium text-white outline-none shadow-[inset_7px_7px_14px_#080613,inset_-7px_-7px_14px_#1c163f] transition placeholder:text-[#aaa6c3]/80 focus:border-violet-300/35 focus:shadow-[inset_4px_4px_9px_#080613,inset_-4px_-4px_9px_#21194c,0_0_0_3px_rgba(139,92,246,0.12)]";
+
 const Contact = () => {
   const earthRef = useRef(null);
   const [form, setForm] = useState({
@@ -54,7 +56,7 @@ const Contact = () => {
     setErrors((currentErrors) => ({ ...currentErrors, [name]: "" }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const nextErrors = {};
     if (!form.name.trim()) nextErrors.name = "Please enter your name.";
@@ -73,31 +75,34 @@ const Contact = () => {
 
     setLoading(true);
 
-    fetch("https://formspree.io/f/meolnopv", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => {
-        setLoading(false);
-        if (response.ok) {
-          setNotice({ type: "success", message: "Message sent! I'll get back to you soon." });
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        } else {
-          setNotice({ type: "error", message: "Message could not be sent. Please try again." });
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error(error);
-        setNotice({ type: "error", message: "Message could not be sent. Please try again." });
+    try {
+      const response = await fetch("https://formspree.io/f/meolnopv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          _subject: `New portfolio message from ${form.name.trim()}`,
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error(`Formspree request failed with status ${response.status}`);
+      }
+
+      setNotice({ type: "success", message: "Message sent! I'll get back to you soon." });
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Contact form submission failed:", error);
+      setNotice({
+        type: "error",
+        message: "Message could not be sent. Please try WhatsApp or email instead.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -106,7 +111,8 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-6 rounded-2xl sm:p-7'
+        className='relative z-10 flex-[0.75] rounded-3xl border border-white/[0.035] bg-[#100d25] p-6 shadow-[18px_18px_38px_#06030f,-16px_-16px_34px_#1d1643] sm:p-7'
+        style={{ zIndex: 2, pointerEvents: "auto" }}
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -114,7 +120,7 @@ const Contact = () => {
           href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20book%20a%20meeting.%20My%20preferred%20date%20and%20time%20are%3A"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/45 bg-cyan-400/10 px-4 py-2.5 text-sm font-bold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-400/20"
+          className="mt-4 inline-flex items-center gap-2 rounded-2xl border border-white/[0.06] bg-[#151030] px-4 py-2.5 text-sm font-bold text-cyan-100 shadow-[6px_6px_13px_#080613,-5px_-5px_12px_#1d1643] transition hover:-translate-y-0.5 hover:text-white hover:shadow-[3px_3px_8px_#080613,-3px_-3px_8px_#261d57]"
         >
           <FaCalendarCheck size={16} /> Book a meeting
         </a>
@@ -138,7 +144,7 @@ const Contact = () => {
               required
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "name-error" : undefined}
-              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={inputClassName}
             />
             {errors.name && <span id="name-error" className="mt-1.5 text-xs text-rose-300">{errors.name}</span>}
           </label>
@@ -154,7 +160,7 @@ const Contact = () => {
               required
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
-              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={inputClassName}
             />
             {errors.email && <span id="email-error" className="mt-1.5 text-xs text-rose-300">{errors.email}</span>}
           </label>
@@ -169,7 +175,7 @@ const Contact = () => {
               required
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "message-error" : undefined}
-              className='bg-tertiary py-3 px-4 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={`${inputClassName} min-h-[138px] resize-y`}
             />
             {errors.message && <span id="message-error" className="mt-1.5 text-xs text-rose-300">{errors.message}</span>}
           </label>
@@ -177,7 +183,8 @@ const Contact = () => {
           <button
             type='submit'
             disabled={loading}
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            aria-busy={loading}
+            className='w-fit rounded-2xl border border-white/[0.06] bg-[#151030] px-8 py-3.5 font-bold text-white shadow-[7px_7px_14px_#080613,-6px_-6px_13px_#1d1643] transition hover:-translate-y-0.5 hover:text-[#ddd6fe] active:translate-y-0 active:shadow-[inset_5px_5px_10px_#080613,inset_-5px_-5px_10px_#21194a] disabled:cursor-not-allowed disabled:opacity-60'
           >
             {loading ? "Sending..." : "Send"}
           </button>
@@ -187,7 +194,8 @@ const Contact = () => {
       <motion.div
         ref={earthRef}
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='h-[320px] md:h-[420px] lg:h-[460px] xl:h-[550px] lg:flex-1'
+        className='relative z-10 h-[320px] md:h-[420px] lg:h-[460px] xl:h-[550px] lg:flex-1'
+        style={{ zIndex: 2, pointerEvents: "none" }}
       >
         <Suspense fallback={<div className="flex h-full items-center justify-center"><span className="canvas-loader" /></div>}>
           {loadEarth && <EarthCanvas />}

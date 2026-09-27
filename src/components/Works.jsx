@@ -27,7 +27,7 @@ const ProjectCard = React.memo(({
     <motion.article
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 250, damping: 18 }}
-      className="group relative flex h-full w-full max-w-[360px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#151030]/90 p-3 shadow-[0_14px_38px_rgba(0,0,0,0.24)]"
+      className="neo-surface group relative flex h-full w-full max-w-[360px] flex-col overflow-hidden rounded-3xl p-3"
       style={{ transformPerspective: 1100 }}
     >
       <div className="pointer-events-none absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/60 to-transparent" />
@@ -61,7 +61,7 @@ const ProjectCard = React.memo(({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={live_link ? `Visit ${name} live website` : `Open ${name} source code on GitHub`}
-          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#090325]/80 backdrop-blur-sm transition hover:scale-110 hover:border-violet-300 hover:bg-violet-500/30"
+          className="neo-raised absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm hover:scale-110"
         >
           {live_link ? <FaArrowUpRightFromSquare className="text-white" size={15} /> : (
             <img
@@ -83,13 +83,13 @@ const ProjectCard = React.memo(({
         {tags.map((tag) => (
           <span
             key={`${name}-${tag.name}`}
-            className={`rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs ${tag.color}`}
+            className={`neo-inset rounded-full px-2.5 py-1 text-xs ${tag.color}`}
           >
             #{tag.name}
           </span>
         ))}
       </div>
-      {live_link && <a href={live_link} target="_blank" rel="noopener noreferrer" className="mx-2 mb-2 mt-auto flex items-center justify-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-3 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-400/20">Live Website <FaArrowUpRightFromSquare size={13} /></a>}
+      {live_link && <a href={live_link} target="_blank" rel="noopener noreferrer" className="neo-raised mx-2 mb-2 mt-auto flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-cyan-100">Live Website <FaArrowUpRightFromSquare size={13} /></a>}
     </motion.article>
   );
 });

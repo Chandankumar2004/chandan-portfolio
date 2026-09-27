@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/15 pt-4 text-center lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-          <a href="#contact" className="inline-flex min-w-[165px] items-center justify-center gap-3 rounded-full border border-fuchsia-400 bg-gradient-to-r from-fuchsia-500/20 via-violet-500/15 to-blue-500/25 px-4 py-1.5 text-xs font-semibold text-white shadow-[0_0_28px_rgba(139,92,246,0.25)] transition hover:scale-[1.03] hover:from-fuchsia-500/35 hover:to-blue-500/35">
+          <a href="#contact" className="neo-raised inline-flex min-w-[165px] items-center justify-center gap-3 rounded-full px-4 py-1.5 text-xs font-semibold text-white">
             Let&apos;s Connect <FaArrowRight />
           </a>
         </div>

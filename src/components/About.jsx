@@ -91,9 +91,9 @@ const ServiceCard = ({ index, title, isActive, onClick }) => {
 
   return (
     <button type="button" onClick={onClick} aria-expanded={isActive} className="xs:w-[250px] w-full text-left">
-      <div ref={cardRef} className={`w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card transition duration-300 hover:-translate-y-2 ${isActive ? "scale-[1.03] shadow-[0_20px_55px_rgba(145,94,255,0.35)]" : ""}`}>
-        <div className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
-          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-violet-500 text-white shadow-[0_12px_26px_rgba(124,58,237,0.38)]"><ServiceIcon size={29} /></span>
+      <div ref={cardRef} className={`neo-surface w-full rounded-[24px] p-1 transition duration-300 hover:-translate-y-2 ${isActive ? "scale-[1.03] shadow-[0_20px_45px_#06030f,-16px_-16px_34px_#35266e]" : ""}`}>
+        <div className="rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
+          <span className="neo-raised flex h-16 w-16 items-center justify-center rounded-2xl text-[#c4b5fd]"><ServiceIcon size={29} /></span>
           <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
           <span className="text-sm text-[#c4b5fd]">View skills ↓</span>
         </div>
@@ -154,7 +154,7 @@ const About = () => {
               onAnimationComplete={() => {
                 if (selectedService) scrollToDetails();
               }}
-              className="overflow-hidden rounded-2xl border border-violet-400/35 bg-black-100/80"
+              className="neo-surface overflow-hidden rounded-3xl"
             >
               <div className="p-6 sm:p-8">
                 <p className="text-sm uppercase tracking-[0.18em] text-[#c4b5fd]">{selectedService}</p>
@@ -162,7 +162,7 @@ const About = () => {
                 <div className="mt-5 flex flex-wrap gap-2.5">
                   {serviceSkills[selectedService].map((skill, index) => {
                     const SkillIcon = skillIcons[skill] || FaCode;
-                    return <motion.span key={skill} initial={{ opacity: 0, y: 12, scale: 0.92 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: index * 0.05, duration: 0.28 }} className="flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-500/10 px-3 py-1.5 text-sm text-[#e6e0ff]"><SkillIcon className="text-[#c4b5fd]" size={15} />{skill}</motion.span>;
+                    return <motion.span key={skill} initial={{ opacity: 0, y: 12, scale: 0.92 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: index * 0.05, duration: 0.28 }} className="neo-inset flex items-center gap-2 rounded-full px-3 py-1.5 text-sm text-[#e6e0ff]"><SkillIcon className="text-[#c4b5fd]" size={15} />{skill}</motion.span>;
                   })}
                 </div>
               </div>

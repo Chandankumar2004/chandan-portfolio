@@ -16,12 +16,12 @@ const ExperienceCard = React.memo(({ experience }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: "#1d1836",
+        background: "#100d25",
         color: "#fff",
       }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+      contentArrowStyle={{ borderRight: "7px solid #100d25" }}
       date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
+      iconStyle={{ background: experience.iconBg, boxShadow: "7px 7px 14px #06030f, -5px -5px 12px #20194a" }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
           {experience.iconText ? (

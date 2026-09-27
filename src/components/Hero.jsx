@@ -71,8 +71,8 @@ const Hero = () => {
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hero-code-window w-full max-w-[560px] overflow-hidden rounded-2xl border border-violet-400/30 bg-[#0d1020]/95 shadow-[0_25px_80px_rgba(124,58,237,0.32)]">
-          <div className="flex items-center gap-2 border-b border-white/10 bg-[#17132d] px-5 py-4">
+        <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hero-code-window neo-surface w-full max-w-[560px] overflow-hidden rounded-3xl">
+          <div className="neo-inset flex items-center gap-2 border-x-0 border-t-0 px-5 py-4">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" /><span className="h-3 w-3 rounded-full bg-[#febc2e]" /><span className="h-3 w-3 rounded-full bg-[#28c840]" />
             <span className="ml-3 font-mono text-xs text-[#aaa6c3]">portfolio.js</span>
           </div>
@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="select-none border-r border-white/5 pr-3 text-right text-[#5c557c]">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8</div>
             <pre className="m-0 min-h-[252px] overflow-x-auto px-5 text-[#dfd9ff]"><code>{highlightCode(typedCode)}<span className="code-cursor">|</span></code></pre>
           </div>
-          <div className="flex items-center gap-2 border-t border-white/10 bg-[#17132d] px-5 py-3 font-mono text-xs text-[#9f95c9]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Ready to build</div>
+          <div className="neo-inset flex items-center gap-2 border-x-0 border-b-0 px-5 py-3 font-mono text-xs text-[#9f95c9]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Ready to build</div>
         </motion.div>
       </div>
 

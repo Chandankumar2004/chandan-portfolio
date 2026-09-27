@@ -64,7 +64,7 @@ const SkillCard = ({ group, isOpen, onToggle }) => {
         layout
         style={{ rotateX, rotateY, transformPerspective: 1200 }}
         whileHover={{ scale: 1.02, z: 18 }}
-        className={`relative overflow-hidden rounded-2xl border transition-colors ${isOpen ? "border-violet-400/70 bg-[#17132d] shadow-[0_24px_55px_rgba(91,33,182,0.35)]" : "border-white/10 bg-black-100/70 hover:border-violet-400/45"}`}
+        className={`neo-surface relative overflow-hidden rounded-3xl transition-colors ${isOpen ? "border-violet-400/40 shadow-[inset_2px_2px_5px_#080613,14px_14px_30px_#06030f,-12px_-12px_26px_#2b205e]" : "hover:border-violet-400/30"}`}
       >
         <div className={`pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br ${accent} opacity-20 blur-2xl`} />
         <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
@@ -78,16 +78,16 @@ const SkillCard = ({ group, isOpen, onToggle }) => {
           <motion.span
             animate={{ y: isOpen ? [0, -5, 0] : 0, rotate: isOpen ? [0, 5, -5, 0] : 0 }}
             transition={{ repeat: isOpen ? Infinity : 0, duration: 2.4, ease: "easeInOut" }}
-            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accent} text-white shadow-[0_10px_22px_rgba(76,29,149,0.42)]`}
+            className={`neo-raised flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accent} text-white`}
           >
             <Icon size={20} />
           </motion.span>
           <span className="flex-1 text-lg font-bold text-white sm:text-xl">{title}</span>
-          <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#c4b5fd]"><FaChevronDown size={14} /></motion.span>
+          <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="neo-raised flex h-9 w-9 items-center justify-center rounded-full text-[#c4b5fd]"><FaChevronDown size={14} /></motion.span>
         </button>
         <div className="relative z-10 flex -mt-1 gap-1.5 px-5 pb-5 sm:px-7">
-          {skills.slice(0, 5).map(([skill, SkillIcon]) => <span title={skill} key={skill} className="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-black/20 text-[#dcd4ff]"><SkillIcon size={14} /></span>)}
-          {skills.length > 5 && <span className="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-black/20 text-xs text-[#dcd4ff]">+{skills.length - 5}</span>}
+          {skills.slice(0, 5).map(([skill, SkillIcon]) => <span title={skill} key={skill} className="neo-inset flex h-7 w-7 items-center justify-center rounded-md text-[#dcd4ff]"><SkillIcon size={14} /></span>)}
+          {skills.length > 5 && <span className="neo-inset flex h-7 w-7 items-center justify-center rounded-md text-xs text-[#dcd4ff]">+{skills.length - 5}</span>}
         </div>
 
         <AnimatePresence initial={false}>
@@ -109,7 +109,7 @@ const SkillCard = ({ group, isOpen, onToggle }) => {
                       animate={{ opacity: 1, y: 0, rotateX: 0 }}
                       transition={{ delay: index * 0.045, duration: 0.3 }}
                       whileHover={{ y: -4, scale: 1.06, transition: { duration: 0.18 } }}
-                      className="flex items-center gap-2 rounded-lg border border-violet-300/25 bg-violet-500/10 px-3 py-2 text-sm text-[#e7e1ff] shadow-[0_5px_10px_rgba(30,20,70,0.25)]"
+                      className="neo-raised flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-[#e7e1ff]"
                     >
                       <SkillIcon className="text-[#c4b5fd]" size={16} />
                       {skill}

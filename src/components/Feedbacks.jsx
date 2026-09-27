@@ -38,7 +38,7 @@ const FeedbackCard = React.memo(({ testimonial, name, designation, company, avat
   return (
     <div
       ref={cardRef}
-      className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full"
+      className="neo-surface p-10 rounded-3xl xs:w-[320px] w-full"
     >
       <p className="text-white font-black text-[48px]">"</p>
 
@@ -70,8 +70,8 @@ const FeedbackCard = React.memo(({ testimonial, name, designation, company, avat
 
 const Feedbacks = () => {
   return (
-    <div className={`mt-12 bg-black-100 rounded-[20px]`}>
-      <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
+    <div className={`neo-surface mt-12 rounded-[28px]`}>
+      <div className={`rounded-2xl ${styles.padding} min-h-[300px]`}>
         <div>
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>

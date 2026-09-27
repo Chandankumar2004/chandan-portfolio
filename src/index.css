@@ -27,6 +27,58 @@ body,
   overflow-x: hidden;
 }
 
+body {
+  background: #0d0920;
+}
+
+/* Shared dark-neomorphism design system */
+.neo-surface {
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  background: #100d25;
+  box-shadow: 16px 16px 34px #06030f, -14px -14px 30px #20194a;
+}
+
+.neo-inset {
+  border: 1px solid rgba(255, 255, 255, 0.025);
+  background: #100d25;
+  box-shadow: inset 7px 7px 14px #080613, inset -7px -7px 14px #1c163f;
+}
+
+.neo-raised {
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  background: #151030;
+  box-shadow: 7px 7px 14px #080613, -6px -6px 13px #1d1643;
+  transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.neo-raised:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 10px #080613, -4px -4px 10px #281e5b;
+}
+
+.neo-raised:active {
+  transform: translateY(0);
+  box-shadow: inset 5px 5px 10px #080613, inset -5px -5px 10px #21194a;
+}
+
+.neo-nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  background: rgba(16, 13, 37, 0.92);
+  box-shadow: 0 12px 28px rgba(4, 3, 14, 0.48);
+  backdrop-filter: blur(16px);
+}
+
+.vertical-timeline-element-content {
+  border: 1px solid rgba(255, 255, 255, 0.045) !important;
+  border-radius: 1.25rem !important;
+  background: #100d25 !important;
+  box-shadow: 14px 14px 28px #06030f, -11px -11px 24px #20194a !important;
+}
+
+.vertical-timeline-element-content-arrow {
+  border-right-color: #100d25 !important;
+}
+
 .hero-code-window {
   backdrop-filter: blur(14px);
 }
@@ -65,17 +117,19 @@ body,
   height: 34px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: 9999px;
   color: #f5f3ff;
-  background: rgba(18, 18, 48, 0.55);
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  background: #151030;
+  box-shadow: 5px 5px 10px #080613, -4px -4px 9px #1d1643;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .footer-social:hover {
   transform: translateY(-3px);
-  border-color: #c4b5fd;
-  background: rgba(109, 40, 217, 0.35);
+  border-color: rgba(196, 181, 253, 0.45);
+  background: #171334;
+  box-shadow: 2px 2px 6px #080613, -2px -2px 6px #2a205c;
 }
 
 .footer-quick-link {
@@ -135,11 +189,8 @@ body,
 }
 
 .freelance-panel {
-  background:
-    radial-gradient(circle at top right, rgba(124, 58, 237, 0.34), transparent 34%),
-    radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.16), transparent 38%),
-    #151030;
-  box-shadow: 0 28px 80px rgba(7, 4, 27, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: #100d25;
+  box-shadow: 18px 18px 38px #06030f, -16px -16px 34px #20194a;
   will-change: transform;
 }
 

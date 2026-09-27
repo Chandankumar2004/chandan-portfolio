@@ -35,17 +35,17 @@ const Freelance = () => (
           <p className="mt-4 max-w-2xl text-sm leading-7 text-secondary sm:text-base">I help businesses turn ideas into modern websites, full-stack applications, CRM tools, and polished customer experiences.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-bold text-[#062b1a] transition hover:-translate-y-1 hover:bg-emerald-400"><FaWhatsapp size={18} /> Start on WhatsApp</a>
-          <a href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20book%20a%20meeting.%20My%20preferred%20date%20and%20time%20are%3A" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/45 bg-cyan-400/10 px-5 py-3 text-sm font-bold text-cyan-100 transition hover:-translate-y-1 hover:bg-cyan-400/20"><FaCalendarCheck size={17} /> Book a meeting</a>
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-violet-300/45 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-1 hover:bg-violet-500/20">Contact me <FaArrowRight size={14} /></a>
+          <a href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" className="neo-raised inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-emerald-300"><FaWhatsapp size={18} /> Start on WhatsApp</a>
+          <a href="https://wa.me/919304335185?text=Hi%20Chandan%2C%20I%20want%20to%20book%20a%20meeting.%20My%20preferred%20date%20and%20time%20are%3A" target="_blank" rel="noopener noreferrer" className="neo-raised inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-cyan-100"><FaCalendarCheck size={17} /> Book a meeting</a>
+          <a href="#contact" className="neo-raised inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-white">Contact me <FaArrowRight size={14} /></a>
         </div>
       </div>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {services.map(({ title, description, icon: Icon }, index) => (
-          <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, rotateX: 2, rotateY: index % 2 === 0 ? -1.5 : 1.5, scale: 1.01, transition: { duration: 0.28, ease: "easeOut" } }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.08, duration: 0.42, ease: [0.22, 1, 0.36, 1] }} style={{ transformPerspective: 1000 }} className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:border-violet-300/40">
+          <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5, rotateX: 2, rotateY: index % 2 === 0 ? -1.5 : 1.5, scale: 1.01, transition: { duration: 0.28, ease: "easeOut" } }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.08, duration: 0.42, ease: [0.22, 1, 0.36, 1] }} style={{ transformPerspective: 1000 }} className="neo-surface relative overflow-hidden rounded-2xl p-5">
             <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-[#c4b5fd]"><Icon size={19} /></span>
+            <span className="neo-raised flex h-10 w-10 items-center justify-center rounded-xl text-[#c4b5fd]"><Icon size={19} /></span>
             <h3 className="mt-4 text-lg font-bold text-white">{title}</h3>
             <p className="mt-2 text-sm leading-6 text-secondary">{description}</p>
           </motion.div>
@@ -56,7 +56,7 @@ const Freelance = () => (
         <div>
           <h3 className="flex items-center gap-2 text-xl font-bold text-white"><FaRocket className="text-[#c4b5fd]" /> How I work</h3>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {process.map((step, index) => <div key={step} className="flex items-center gap-3 rounded-xl bg-white/5 px-4 py-3 text-sm text-[#e7e1ff]"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-500/25 text-xs font-bold text-[#c4b5fd]">0{index + 1}</span>{step}</div>)}
+            {process.map((step, index) => <div key={step} className="neo-inset flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-[#e7e1ff]"><span className="neo-raised flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-[#c4b5fd]">0{index + 1}</span>{step}</div>)}
           </div>
         </div>
         <div>

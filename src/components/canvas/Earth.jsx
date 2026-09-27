@@ -15,6 +15,8 @@ const Earth = () => {
 const EarthCanvas = () => {
   return (
     <Canvas
+      className="pointer-events-none"
+      style={{ pointerEvents: "none" }}
       shadows
       frameloop='demand'
       dpr={[1, 2]}

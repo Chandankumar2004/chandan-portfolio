@@ -22,8 +22,8 @@ const Stars = memo((props) => {
 });
 
 const StarsCanvas = memo(() => (
-  <div className="pointer-events-none absolute inset-0 z-0 h-full w-full">
-    <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 1] }}>
+  <div className="absolute inset-0 h-full w-full" style={{ zIndex: 0, pointerEvents: "none" }}>
+    <Canvas className="pointer-events-none" style={{ pointerEvents: "none" }} dpr={[1, 1.5]} camera={{ position: [0, 0, 1] }}>
       <Suspense fallback={null}>
         <Stars />
       </Suspense>

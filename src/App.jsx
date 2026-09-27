@@ -51,7 +51,7 @@ const App = () => {
         <Works />
         <Freelance />
         <Feedbacks />
-        <div ref={lowerSectionRef} className='relative z-0'>
+        <div ref={lowerSectionRef} className='relative z-0' style={{ isolation: "isolate" }}>
           <Contact />
           <Suspense fallback={null}>
             {loadStars && <StarsCanvas />}
