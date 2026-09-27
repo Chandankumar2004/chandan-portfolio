@@ -234,6 +234,7 @@ const projects = [
     ],
     image: project_2,
     source_code_link: "https://github.com/Chandankumar2004/Weather_App",
+    live_link: "https://weather-app-seven-zeta-81.vercel.app/",
   },
   {
     name: "EMS",
@@ -284,6 +285,7 @@ const projects = [
     ],
     image: project12,
     source_code_link: "https://github.com/Chandankumar2004/MovieApi",
+    live_link: "https://movie-api-iota-six.vercel.app/",
   },
   {
     name: "Amazon Clone(UI)",
@@ -305,6 +307,7 @@ const projects = [
     ],
     image: project_6,
     source_code_link: "https://github.com/Chandankumar2004/Amazon_UI_clon",
+    live_link: "https://amazon-ui-clon-pearl.vercel.app/",
   },
   {
     name: "Pra-Roz",
@@ -330,6 +333,7 @@ const projects = [
     ],
     image: project_3,
     source_code_link: "https://github.com/Chandankumar2004/PraRoz",
+    live_link: "https://pra-roz-iota.vercel.app/",
   },
 ];
 

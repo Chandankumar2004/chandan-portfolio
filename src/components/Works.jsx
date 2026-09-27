@@ -23,6 +23,9 @@ const ProjectCard = React.memo(({
   source_code_link,
   live_link,
 }) => {
+  const projectLink = live_link || source_code_link;
+  const projectLinkLabel = live_link ? "Live Website" : "View Repository";
+
   return (
     <motion.article
       whileHover={{ y: -4 }}
@@ -89,7 +92,7 @@ const ProjectCard = React.memo(({
           </span>
         ))}
       </div>
-      {live_link && <a href={live_link} target="_blank" rel="noopener noreferrer" className="neo-raised mx-2 mb-2 mt-auto flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-cyan-100">Live Website <FaArrowUpRightFromSquare size={13} /></a>}
+      {projectLink && <a href={projectLink} target="_blank" rel="noopener noreferrer" className="neo-raised mx-2 mb-2 mt-auto flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-cyan-100">{projectLinkLabel} <FaArrowUpRightFromSquare size={13} /></a>}
     </motion.article>
   );
 });
